@@ -1,2 +1,14 @@
 workshop_builder/build_all_gamemodes.sh
-
+gmod-example/steam_cache/
+gmod-example/steam_appid.txt
+gmod-example/garrysmod/addons/
+gmod-example/garrysmod/cache/
+gmod-example/garrysmod/data/
+gmod-example/garrysmod/download/
+gmod-example/garrysmod/downloadlists/
+gmod-example/garrysmod/downloads/
+gmod-example/garrysmod/maps/
+gmod-example/garrysmod/map.pack
+gmod-example/garrysmod/modelsounds.cache
+gmod-example/garrysmod/sv.db
+gmod-example/garrysmod/cfg/server.vdf
