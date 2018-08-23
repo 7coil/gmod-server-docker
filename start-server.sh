@@ -1,13 +1,12 @@
 #!/bin/bash
-echo Welcome to Garry\'s Mod!
 
 if [ -n "$UNION" ]; then
   unionfs-fuse -o cow /gmod-volume=RW:/gmod-base=RO /gmod-union
-  EXECUTABLE = "/gmod-union/srcds_run"
+  while true; do
+    /gmod-union/srcds_run -game garrysmod -norestart -port ${PORT} +maxplayers ${MAXPLAYERS} +hostname "${G_HOSTNAME}" +gamemode ${GAMEMODE} "${ARGS}" +map ${MAP}
+  done
 else
-  EXECUTABLE = "/gmod-base/srcds_run"
+  while true; do
+    /gmod-base/srcds_run -game garrysmod -norestart -port ${PORT} +maxplayers ${MAXPLAYERS} +hostname "${G_HOSTNAME}" +gamemode ${GAMEMODE} "${ARGS}" +map ${MAP}
+  done
 fi
-
-while true; do
-  ${EXECUTABLE} -game garrysmod -norestart -port ${PORT} +maxplayers ${MAXPLAYERS} +hostname "${G_HOSTNAME}" +gamemode ${GAMEMODE} "${ARGS}" +map ${MAP}
-done
