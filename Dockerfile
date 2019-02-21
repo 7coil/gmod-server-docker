@@ -27,6 +27,8 @@ ADD mount.cfg /gmod-base/garrysmod/cfg/mount.cfg
 # Set up union
 RUN mkdir /gmod-volume
 VOLUME /gmod-volume
+RUN mkdir /gmod-common
+VOLUME /gmod-common
 RUN mkdir /gmod-union
 
 # Container
