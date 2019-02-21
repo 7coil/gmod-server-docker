@@ -11,7 +11,6 @@ RUN mkdir /steamcmd
 WORKDIR /steamcmd
 RUN wget http://media.steampowered.com/installer/steamcmd_linux.tar.gz
 RUN tar -xvf steamcmd_linux.tar.gz
-WORKDIR /
 
 # Install Garry's Mod
 RUN mkdir /gmod-base

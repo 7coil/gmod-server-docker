@@ -21,7 +21,8 @@ docker run --privileged=true -d -P -e UNION=1 -v /home/srcds/gmod-1:/gmod-volume
 # Start a Melonbomber server on port 27016, mounting the contents of /home/gmod-server-docker/gmod-example over the base
 docker run \
   --privileged=true \
-  -v /home/gmod-server-docker/gmod-example:/gmod-volume \ # Copy files from the "gmod-example" folder to the "gmod-volume" for custom settings and addons
+  -v /home/gmod-server-docker/gmod-example:/gmod-volume \ # Use the /home/gmod-server-docker/gmod-example folder for files specific to this server
+  -v /home/gmod-server-docker/gmod-base:/gmod-base \ # Use the /home/gmod-server-docker/gmod-base folder for all files common to all servers
   -it -p 27016:27016/udp -e PORT=27016 \ # Set the port to 27016.
   -e ARGS="+host_workshop_collection 1489511514" \ # Add extra arguments to the Garry's Mod server
   -e GAMEMODE=melonbomber \ # Set the gamemode of the server
