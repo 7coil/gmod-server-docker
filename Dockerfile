@@ -36,7 +36,7 @@ EXPOSE 27015/udp
 # Default settings for the Garry's Mod Server
 ENV PORT="27015"
 ENV MAXPLAYERS="16"
-ENV G_HOSTNAME="Garry\'s Mod for Docker"
+ENV G_HOSTNAME="Garry's Mod for Docker"
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 
