@@ -10,6 +10,7 @@ You can also create a `start-server.sh` in the volume to customize what happens 
 Using unionfs-fuse requires the container to be run with `--privileged=true` and the environment variable `UNION` to be set. 
 
 ## Examples
+### Docker on Ubuntu
 ```bash
 # Start a server on port 27015 without using the union filesystem
 docker run -d -p 27015:27015/udp suchipi/gmod-server
@@ -26,6 +27,20 @@ docker run \
   -e GAMEMODE=melonbomber \ # Set the gamemode of the server
   -e UNION=true \ # Tell the script to enable the union file system
   gmod-server-docker:latest
+```
+
+### [Docker for Windows](https://docs.docker.com/docker-for-windows/) (powershell)
+```powershell
+# Start a melonbomber server
+docker run --privileged=true -d -P `
+  -v D:\gmod-server-docker\gmod-example:/gmod-volume ` # Use the D:\gmod-server-docker\gmod-example folder for files specific to this server
+  -v D:\gmod-server-docker\gmod-base:/gmod-volume ` # Use the D:\gmod-server-docker\gmod-base folder for all files common to all servers
+  -it -p 27016:27016/udp `
+  -e PORT=27016 ` # Set the port
+  -e GAMEMODE="melonbomber" ` # Set the gamemode
+  -e "UNION=true" ` # Turn on the union file system
+  -e ARGS="+host_workshop_collection 1489511514" # Add extra arguments to the Garry's Mod server
+  gmod-server-docker
 ```
 
 ## Notes/Todo
