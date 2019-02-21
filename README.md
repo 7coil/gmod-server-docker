@@ -34,7 +34,7 @@ docker run \
 # Start a melonbomber server
 docker run --privileged=true -d -P `
   -v D:\gmod-server-docker\gmod-example:/gmod-volume ` # Use the D:\gmod-server-docker\gmod-example folder for files specific to this server
-  -v D:\gmod-server-docker\gmod-base:/gmod-volume ` # Use the D:\gmod-server-docker\gmod-base folder for all files common to all servers
+  -v D:\gmod-server-docker\gmod-base:/gmod-base ` # Use the D:\gmod-server-docker\gmod-base folder for all files common to all servers
   -it -p 27016:27016/udp `
   -e PORT=27016 ` # Set the port
   -e GAMEMODE="melonbomber" ` # Set the gamemode
