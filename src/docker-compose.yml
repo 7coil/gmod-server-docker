@@ -9,6 +9,7 @@ services:
       - ./instance/sandbox:/gmod/instance
       - ./common:/gmod/common
     privileged: true
+    tty: true
     environment:
       PORT: 27015
       MAP: gm_construct
@@ -21,6 +22,7 @@ services:
       - ./instance/melonbomber:/gmod/instance
       - ./common:/gmod/common
     privileged: true
+    tty: true
     environment:
       PORT: 27016
       MAP: mb_melonbomber
