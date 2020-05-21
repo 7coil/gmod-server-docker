@@ -1,22 +1,58 @@
 version: '3.8'
 services:
-  sandbox:
+  rethinkdb:
+    image: rethinkdb
+    hostname: rethinkdb
+    ports:
+      - 127.0.0.1:8080:8080
+    volumes:
+      - ./rethinkdb-data:/data
+  rethinkdb_setup:
+    build: rethinkdb_setup
+    environment:
+      DATABASE_HOST: rethinkdb
+  gmod_database_webserver:
+    build: gmod-database-webserver
+    environment:
+      DATABASE_HOST: rethinkdb
+    depends_on:
+      - rethinkdb
+    ports:
+      - 127.0.0.1:8000:80
+  # sandbox:
+  #   build: gmod-server-docker
+  #   ports:
+  #     - 27015:27015/udp
+  #   volumes:
+  #     - ./write/sandbox:/gmod/write
+  #     - ./instance/sandbox:/gmod/instance
+  #     - ./common:/gmod/common
+  #   privileged: true
+  #   stop_grace_period: 30s
+  #   environment:
+  #     PORT: 27015
+  #     MAP: gm_construct
+  #     STEAM_SERVER_KEY: sandbox
+  #   secrets:
+  #     - steam_server_key
+  #   depends_on:
+  #     - gmod_database_webserver
+  hideandseek:
     build: gmod-server-docker
     ports:
-      - 27015:27015/udp
+      - 27017:27017/udp
     volumes:
-      - ./write/sandbox:/gmod/write
-      - ./instance/sandbox:/gmod/instance
+      - ./write/hideandseek:/gmod/write
+      - ./instance/hideandseek:/gmod/instance
       - ./common:/gmod/common
     privileged: true
-    tty: true
     stop_grace_period: 30s
     environment:
-      PORT: 27015
-      MAP: gm_construct
-      STEAM_SERVER_KEY: sandbox
-    secrets:
-      - steam_server_key
+      PORT: 27017
+      MAP: de_desert_atrocity_v3
+      GAMEMODE: hideandseek
+      WORKSHOP: 1662571892
+      STEAM_SERVER_KEY: hideandseek
   melonbomber:
     build: gmod-server-docker
     ports:
@@ -26,7 +62,6 @@ services:
       - ./instance/melonbomber:/gmod/instance
       - ./common:/gmod/common
     privileged: true
-    tty: true
     stop_grace_period: 30s
     environment:
       PORT: 27016
@@ -36,6 +71,8 @@ services:
       STEAM_SERVER_KEY: melonbomber
     secrets:
       - steam_server_key
+    depends_on:
+      - gmod_database_webserver
 secrets:
   steam_server_key:
     file: ./secrets/steam_server_key.json

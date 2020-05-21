@@ -27,7 +27,7 @@ const srcds = pty.spawn('/gmod/union/srcds_run', args)
 
 process.on('SIGTERM', () => {
   console.log('Exiting Garry\'s Mod')
-  process.write('quit\r')
+  srcds.write('quit\r')
 })
 
 srcds.on('data', data => process.stdout.write(data));
