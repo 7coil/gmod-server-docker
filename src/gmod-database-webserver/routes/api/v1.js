@@ -67,6 +67,7 @@ router
   .post('/ulib/ucl-reload-groups', (req, res) => {
     r.table('ulib_groups')
       .run(dbCon)
+      .then(cursor => cursor.toArray())
       .then((groups) => {
         const data = {};
 
@@ -95,6 +96,7 @@ router
   .post('/ulib/ucl-reload-users', (req, res) => {
     r.table('ulib_users')
       .run(dbCon)
+      .then(cursor => cursor.toArray())
       .then((users) => {
         const data = {};
 
