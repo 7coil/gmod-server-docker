@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  sandbox:
+    build: garrysmod
+    ports:
+      - 27015:27015/udp
+    volumes:
+      - ./sandbox:/gmod/specific
+      - ./common:/gmod/common
+    privileged: true
+    environment:
+      PORT: 27015
+      MAP: gm_construct
