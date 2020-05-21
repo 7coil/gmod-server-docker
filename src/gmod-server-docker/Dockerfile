@@ -46,7 +46,7 @@ EXPOSE 27015/udp
 
 # Default settings for the Garry's Mod Server
 ENV PORT="27015"
-ENV MAXPLAYERS="16"
+ENV MAXPLAYERS="32"
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 
