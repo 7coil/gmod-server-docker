@@ -2,8 +2,10 @@ FROM ubuntu:xenial
 LABEL maintainer="github@leondrolio.com"
 
 # Install required libraries
-RUN apt-get update
-RUN apt-get install wget lib32stdc++6 lib32gcc1 unionfs-fuse -y
+RUN apt update
+RUN apt install curl wget -y
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt install lib32stdc++6 lib32gcc1 lib32tinfo5 unionfs-fuse nodejs python build-essential -y
 
 # Install SteamCMD
 WORKDIR /steamcmd
@@ -37,14 +39,16 @@ VOLUME /gmod/instance
 VOLUME /gmod/common
 
 # Add start script
-ADD start.sh start.sh
+ADD start.js start.js
+ADD package.json package.json
+RUN npm i
 EXPOSE 27015/udp
 
 # Default settings for the Garry's Mod Server
 ENV PORT="27015"
 ENV MAXPLAYERS="16"
-ENV G_HOSTNAME="Garrys Mod for Docker"
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 
-CMD ["/bin/sh", "/gmod/start.sh"]
+STOPSIGNAL SIGTERM
+CMD ["node", "/gmod/start.js"]
