@@ -5,7 +5,7 @@ services:
     ports:
       - 27015:27015/udp
     volumes:
-      - ./sandbox:/gmod/specific
+      - ./instances/sandbox:/gmod/specific
       - ./common:/gmod/common
     privileged: true
     environment:
