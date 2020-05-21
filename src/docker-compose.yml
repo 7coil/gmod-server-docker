@@ -3,7 +3,10 @@ services:
   rethinkdb:
     image: rethinkdb
     hostname: rethinkdb
-    ports: 127.0.0.1:8080:8080
+    ports:
+      - 127.0.0.1:8080:8080
+    volumes:
+      - ./rethinkdb-data:/data
   rethinkdb_setup:
     build: rethinkdb_setup
     environment:
