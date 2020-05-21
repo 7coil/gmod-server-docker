@@ -48,4 +48,4 @@ ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 
 STOPSIGNAL SIGINT
-CMD ["/bin/sh", "/gmod/start.sh"]
+CMD ["/gmod/start.sh"]
