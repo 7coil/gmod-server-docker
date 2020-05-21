@@ -2,4 +2,4 @@ FROM node:alpine
 WORKDIR /app
 COPY . .
 RUN yarn
-CMD node index.js
+CMD ["node", "index.js"]

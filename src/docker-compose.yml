@@ -17,6 +17,8 @@ services:
       DATABASE_HOST: rethinkdb
     depends_on:
       - rethinkdb
+    ports:
+      - 127.0.0.1:8000:80
   sandbox:
     build: gmod-server-docker
     ports:
