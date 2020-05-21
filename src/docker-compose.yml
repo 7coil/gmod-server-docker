@@ -14,6 +14,9 @@ services:
     environment:
       PORT: 27015
       MAP: gm_construct
+      STEAM_SERVER_KEY: sandbox
+    secrets:
+      - steam_server_key
   melonbomber:
     build: gmod-server-docker
     ports:
@@ -30,3 +33,9 @@ services:
       MAP: mb_melonbomber
       GAMEMODE: melonbomber
       WORKSHOP: 1489511514
+      STEAM_SERVER_KEY: melonbomber
+    secrets:
+      - steam_server_key
+secrets:
+  steam_server_key:
+    file: ./secrets/steam_server_key.json
