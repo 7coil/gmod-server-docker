@@ -50,5 +50,5 @@ ENV MAXPLAYERS="16"
 ENV GAMEMODE="sandbox"
 ENV MAP="gm_construct"
 
-STOPSIGNAL SIGINT
+STOPSIGNAL SIGTERM
 CMD ["node", "/gmod/start.js"]
