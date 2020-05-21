@@ -75,5 +75,10 @@ local function reloadUsers()
   )
 end
 
-reloadGroups()
-reloadUsers()
+local function reloadAll()
+  reloadGroups()
+  reloadUsers()
+end
+
+timer.Create('ulib-http-reload', 5, 0, reloadAll)
+reloadAll()
