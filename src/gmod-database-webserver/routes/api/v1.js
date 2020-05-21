@@ -1,8 +1,28 @@
 const express = require('express');
 const r = require('rethinkdb');
-const dbCon = require('../../rethinkdb');
 
 const router = express.Router();
+let databaseHost = process.env.DATABASE_HOST || '127.0.0.1'
+let dbCon = null;
+
+const onConnect = (error, connection) => {
+  if (error) {
+    console.log(error);
+    setTimeout(() => {
+      r.connect({
+        host: databaseHost,
+        db: 'list'
+      }, onConnect)
+    }, 100)
+  } else {
+    dbCon = connection;
+  }
+}
+
+r.connect({
+  host: databaseHost,
+  db: 'list'
+}, onConnect)
 
 router
   .post('/ulib/ban', (req, res) => {
@@ -36,6 +56,7 @@ router
 
     r.table('ulib_groups')
       .delete()
+      .run(dbCon)
       .then(() => {
         r.table('ulib_groups')
           .insert(data)
@@ -159,3 +180,7 @@ router
   });
 
 module.exports = router;
+
+process.on('SIGTERM', () => {
+  dbCon.close();
+})
