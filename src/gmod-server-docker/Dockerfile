@@ -22,9 +22,9 @@ RUN mkdir write
 RUN mkdir instance
 RUN mkdir common
 RUN mkdir union
-RUN mkdir content
-RUN mkdir content/css
-RUN mkdir content/tf2
+# RUN mkdir content
+# RUN mkdir content/css
+# RUN mkdir content/tf2
 
 # Order of Files (where to look first?!)
 # 1. write - The place where data for this server is written to.
