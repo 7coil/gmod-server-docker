@@ -17,7 +17,7 @@ RUN /steamcmd/steamcmd.sh +login anonymous +force_install_dir /gmod/content/tf2 
 
 # Create Folders
 WORKDIR /gmod
-RUN mkdir base
+# RUN mkdir base
 RUN mkdir write
 RUN mkdir instance
 RUN mkdir common
