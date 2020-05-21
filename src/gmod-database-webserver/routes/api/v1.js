@@ -58,8 +58,6 @@ router
       });
   })
   .post('/ulib/ucl-save-users', (req, res) => {
-    const data = [];
-
     const data = Object.entries(req.payload.users)
       .map(([key, value]) => Object.assign(value, { id: key }))
 
