@@ -29,4 +29,4 @@ services:
       PORT: 27016
       MAP: mb_melonbomber
       GAMEMODE: melonbomber
-      ARGS: +host_workshop_collection 1489511514
+      WORKSHOP: 1489511514
