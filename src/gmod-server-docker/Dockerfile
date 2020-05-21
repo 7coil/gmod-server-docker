@@ -2,9 +2,10 @@ FROM ubuntu:xenial
 LABEL maintainer="github@leondrolio.com"
 
 # Install required libraries
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt update
-RUN apt-get install wget lib32stdc++6 lib32gcc1 lib32tinfo5 unionfs-fuse nodejs python build-essential -y
+RUN apt install curl wget -y
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt install lib32stdc++6 lib32gcc1 lib32tinfo5 unionfs-fuse nodejs python build-essential -y
 
 # Install SteamCMD
 WORKDIR /steamcmd
@@ -40,7 +41,7 @@ VOLUME /gmod/common
 # Add start script
 ADD start.js start.js
 ADD package.json package.json
-RUN yarn
+RUN npm i
 EXPOSE 27015/udp
 
 # Default settings for the Garry's Mod Server
