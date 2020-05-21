@@ -10,6 +10,7 @@ services:
       - ./common:/gmod/common
     privileged: true
     tty: true
+    stop_grace_period: 30s
     environment:
       PORT: 27015
       MAP: gm_construct
@@ -23,6 +24,7 @@ services:
       - ./common:/gmod/common
     privileged: true
     tty: true
+    stop_grace_period: 30s
     environment:
       PORT: 27016
       MAP: mb_melonbomber
