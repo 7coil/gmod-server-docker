@@ -4,3 +4,6 @@
 [submodule "src/common/garrysmod/addons/ulx"]
 	path = src/common/garrysmod/addons/ulx
 	url = https://github.com/TeamUlysses/ulx
+[submodule "src/common/garrysmod/addons/gmod-mapvote"]
+	path = src/common/garrysmod/addons/gmod-mapvote
+	url = https://github.com/7coil/gmod-mapvote.git
