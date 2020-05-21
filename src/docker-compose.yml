@@ -11,3 +11,16 @@ services:
     environment:
       PORT: 27015
       MAP: gm_construct
+  melonbomber:
+    build: garrysmod
+    ports:
+      - 27016:27016/udp
+    volumes:
+      - ./instances/melonbomber:/gmod/specific
+      - ./common:/gmod/common
+    privileged: true
+    environment:
+      PORT: 27016
+      MAP: mb_melonbomber
+      GAMEMODE: melonbomber
+      ARGS: +host_workshop_collection 1489511514
