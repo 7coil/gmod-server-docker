@@ -1,0 +1,8 @@
+AddonInfo {
+  name "HTTP store for ULIB data"
+  version "0.1"
+  up_date "2020-05-21"
+  author_name "Leondro Lio"
+  author_email "github@leondrolio.com"
+  override "1"
+}
