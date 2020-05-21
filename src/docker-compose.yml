@@ -53,6 +53,10 @@ services:
       GAMEMODE: hideandseek
       WORKSHOP: 1662571892
       STEAM_SERVER_KEY: hideandseek
+    secrets:
+      - steam_server_key
+    depends_on:
+      - gmod_database_webserver
   melonbomber:
     build: gmod-server-docker
     ports:
