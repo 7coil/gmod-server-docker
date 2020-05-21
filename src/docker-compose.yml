@@ -1,22 +1,24 @@
 version: '3.8'
 services:
   sandbox:
-    build: garrysmod
+    build: gmod-server-docker
     ports:
       - 27015:27015/udp
     volumes:
-      - ./instances/sandbox:/gmod/specific
+      - ./write/sandbox:/gmod/write
+      - ./instance/sandbox:/gmod/instance
       - ./common:/gmod/common
     privileged: true
     environment:
       PORT: 27015
       MAP: gm_construct
   melonbomber:
-    build: garrysmod
+    build: gmod-server-docker
     ports:
       - 27016:27016/udp
     volumes:
-      - ./instances/melonbomber:/gmod/specific
+      - ./write/melonbomber:/gmod/write
+      - ./instance/melonbomber:/gmod/instance
       - ./common:/gmod/common
     privileged: true
     environment:
