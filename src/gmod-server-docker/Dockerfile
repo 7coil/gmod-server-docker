@@ -38,6 +38,7 @@ VOLUME /gmod/common
 
 # Add start script
 ADD start.sh start.sh
+RUN chmod +x start.sh
 EXPOSE 27015/udp
 
 # Default settings for the Garry's Mod Server
