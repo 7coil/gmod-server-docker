@@ -37,6 +37,26 @@ services:
   #     - steam_server_key
   #   depends_on:
   #     - gmod_database_webserver
+  terrortown:
+    build: gmod-server-docker
+    ports:
+      - 27018:27018/udp
+    volumes:
+      - ./write/terrortown:/gmod/write
+      - ./instance/terrortown:/gmod/instance
+      - ./common:/gmod/common
+    privileged: true
+    stop_grace_period: 30s
+    environment:
+      PORT: 27018
+      MAP: ttt_waterworld
+      GAMEMODE: terrortown
+      WORKSHOP: 2104685825
+      STEAM_SERVER_KEY: terrortown
+    secrets:
+      - steam_server_key
+    depends_on:
+      - gmod_database_webserver
   hideandseek:
     build: gmod-server-docker
     ports:
