@@ -19,9 +19,7 @@ services:
       - rethinkdb
     ports:
       - 127.0.0.1:8000:80
-    restart_policy:
-      max_attempts: 2
-      window: 60s
+    restart: always
   # sandbox:
   #   build: gmod-server-docker
   #   ports:
@@ -60,9 +58,7 @@ services:
       - steam_server_key
     depends_on:
       - gmod_database_webserver
-    restart_policy:
-      max_attempts: 2
-      window: 60s
+    restart: always
   hideandseek:
     build: gmod-server-docker
     ports:
@@ -83,9 +79,7 @@ services:
       - steam_server_key
     depends_on:
       - gmod_database_webserver
-    restart_policy:
-      max_attempts: 2
-      window: 60s
+    restart: always
   melonbomber:
     build: gmod-server-docker
     ports:
@@ -106,9 +100,7 @@ services:
       - steam_server_key
     depends_on:
       - gmod_database_webserver
-    restart_policy:
-      max_attempts: 2
-      window: 60s
+    restart: always
 secrets:
   steam_server_key:
     file: ./secrets/steam_server_key.json
