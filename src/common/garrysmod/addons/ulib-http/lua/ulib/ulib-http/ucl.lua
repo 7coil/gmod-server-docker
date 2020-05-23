@@ -80,5 +80,6 @@ local function reloadAll()
   reloadUsers()
 end
 
-timer.Create('ulib-http-reload', 5, 0, reloadAll)
+timer.Create('ulib-http-reloaducl', 5, 0, reloadAll)
+hook.Add('Initialize', 'ulib-http-loaducl', reloadAll)
 reloadAll()

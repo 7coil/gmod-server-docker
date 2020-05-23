@@ -69,7 +69,6 @@ function ULib.addBan(steamid, time, reason, name, admin)
     ULib.kick(ply, reason, nil, true)
   end
   RunConsoleCommand('kickid', steamid, BAN_MESSAGE)
-  ULib.refreshBans()
 end
 
 function ULib.unban(steamid)
@@ -82,7 +81,6 @@ function ULib.unban(steamid)
       ULib.refreshBans()
     end
   )
-  ULib.refreshBans()
 end
 
 function ULib.refreshBans()
@@ -111,6 +109,17 @@ function ULib.refreshBans()
   )
 end
 
-hook.Add( "Initialize", "mss_loadbans", ULib.refreshBans)
-ULib.refreshBans()
-timer.Simple(0, ULib.refreshBans)
+local function reloadAll()  
+  for number, ply in pairs(player.GetAll()) do
+    local message = ULib.getBanMessage(ply.SteamID())
+    if message do
+      game.KickID(ply.SteamID(), message)
+    end
+  end
+  
+  ULib.refreshBans()
+end
+
+timer.Create('ulib-http-reloadbans', 5, 0, reloadAll)
+hook.Add('Initialize', 'ulib-http-loadbans', reloadAll)
+reloadAll()
