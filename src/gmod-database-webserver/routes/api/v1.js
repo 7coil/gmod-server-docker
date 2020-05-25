@@ -110,13 +110,13 @@ router
   })
   .post('/ps/create-user', (req, res) => {
     r.table('points')
-      .run(dbCon)
       .insert({
         id: req.payload.id,
         items: {}
       }, {
         conflict: 'update'
       })
+      .run(dbCon)
       .then(data => res.json(data));
   })
   .post('/ps/get-data', (req, res) => {
