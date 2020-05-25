@@ -7,3 +7,6 @@
 [submodule "src/common/garrysmod/addons/gmod-mapvote"]
 	path = src/common/garrysmod/addons/gmod-mapvote
 	url = https://github.com/7coil/gmod-mapvote.git
+[submodule "src/common/garrysmod/addons/pointshop"]
+	path = src/common/garrysmod/addons/pointshop
+	url = https://github.com/7coil/pointshop.git
