@@ -1,15 +1,43 @@
-# Full Stack Garry's Mod
+# The Beacon Garry's Mod
+
+Featuring:
 - ULX groups, shares and bans shared between servers
 - Uses RethinkDB for ultimate "Web 2.0" experience
 - Uses `unionfs-fuse` in conjunction with Docker volumes to decrease per-server file size usage
 - Production Ready
 
 ## How to use
-- Place content common to all servers in the `/src/common/garrysmod` folder
-- Place content common to individual servers in the `/src/instance/[instance]/garrysmod` folder
 - Populate `/src/secrets/steam_server_key.json`
     - An example file in `/src/secrets-example/` is provided.
+    - Generate keys [from Steam's website](https://steamcommunity.com/dev/managegameservers)
 - Run `docker-compose up`
+
+## Adding a new Server
+To add a new gamemode to the stack, copy and change some of the settings in the `docker-compose.yml` file.
+
+```yaml
+container_name: # The name of the container. Must be unique between all containers
+  build: gmod-server-docker
+  ports:
+    - 27016:27016/udp # Port to listen on. Port forwarding to different port NOT allowed.
+  volumes:
+    - ./write/container_name:/gmod/write # The place where unionfs-fuse writes to for server specific data
+    - ./instance/container_name:/gmod/instance # Your server configuration and addons for this specific server
+    - ./common:/gmod/common # Server configuration and addons for all servers
+  privileged: true
+  stop_grace_period: 30s
+  environment:
+    PORT: 27016 # Use same port number as above 
+    MAP: mb_melonbomber # Map to load to
+    GAMEMODE: melonbomber # Name of the gamemode
+    WORKSHOP: 1489511514 # ID of the workshop collection to download items from
+    STEAM_SERVER_KEY: container_name # The "key" of the Steam Server API key. Must match a key in `/src/secrets/steam_server_key.json`
+  secrets:
+    - steam_server_key
+  depends_on:
+    - gmod_database_webserver
+  restart: always
+```
 
 ## Services Overview
 Name                    | Ports                                            | Description
