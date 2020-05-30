@@ -112,7 +112,7 @@ end
 local function reloadAll()  
   for number, ply in pairs(player.GetAll()) do
     local message = ULib.getBanMessage(ply.SteamID())
-    if message do
+    if message then
       game.KickID(ply.SteamID(), message)
     end
   end
